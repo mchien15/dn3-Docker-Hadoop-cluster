@@ -222,7 +222,7 @@ volumes:
   # hadoop_namenode_spark:
   # hadoop_namenode_zeppelin:
   # hadoop_namenode_flume:
-  hadoop_datanode3:
+  hadoop_datanode:
   hadoop_datanode_conda:
   hadoop_resourcemanager_conda:
   hadoop_nodemanager_conda:
