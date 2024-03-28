@@ -106,7 +106,7 @@ services:
     container_name: hive-server
     depends_on:
       # - namenode
-      - datanode
+      - datanode3
       - hive-metastore
     env_file:
       - ./hadoop.env
