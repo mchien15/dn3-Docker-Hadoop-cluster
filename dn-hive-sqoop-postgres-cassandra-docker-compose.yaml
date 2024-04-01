@@ -119,7 +119,7 @@ services:
   hive-server:
     # image: mrugankray/hive-server-sqoop:1.0
     build:
-      context: ./docker_image_conf/hive-server
+      context: ./docker_image_conf/hive_server
       dockerfile: Dockerfile
     container_name: hive-server
     # networks:
