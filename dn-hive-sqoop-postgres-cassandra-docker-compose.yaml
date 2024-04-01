@@ -34,12 +34,12 @@ services:
   #   env_file:
   #     - ./hadoop.env
 
-  datanode3:
+  datanode:
     image: mrugankray/datanode-python:1.0
     # build:
     #   context: ./docker_image_conf/datanode
     #   dockerfile: Dockerfile
-    container_name: datanode3
+    container_name: datanode
     networks:
       - ivirse_hadoop_network
     restart: always
@@ -51,7 +51,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       SERVICE_PRECONDITION: ""
-      CORE_CONF_fs_defaultFS: "hdfs://namenode:9000"
+      CORE_CONF_fs_defaultFS: "hdfs://10.0.50.139:9000"
     ports:
       - "9864:9864"
     env_file:
@@ -68,7 +68,7 @@ services:
       - ./configs/resourcemanager_bashrc.txt:/root/.bashrc
       - ~/.ssh:/root/.ssh
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864"
+      SERVICE_PRECONDITION: "datanode:9864"
     ports:
       - "8088:8088"
     env_file:
@@ -85,7 +85,7 @@ services:
       - ./configs/nodemanager_bashrc.txt:/root/.bashrc
       - ~/.ssh:/root/.ssh
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864 resourcemanager:8088"
+      SERVICE_PRECONDITION: "datanode:9864 resourcemanager:8088"
     ports:
       - "8042:8042"
       - "19888:19888"
@@ -99,7 +99,7 @@ services:
       - ivirse_hadoop_network
     restart: always
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864 resourcemanager:8088"
+      SERVICE_PRECONDITION: "datanode:9864 resourcemanager:8088"
     ports:
       - "8188:8188"
     volumes:
@@ -116,7 +116,7 @@ services:
       - ivirse_hadoop_network
     depends_on:
       # - namenode
-      - datanode3
+      - datanode
       - hive-metastore
     env_file:
       - ./hadoop.env
@@ -142,7 +142,7 @@ services:
       - ./hadoop.env
     command: /opt/hive/bin/hive --service metastore
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864 hive-metastore-postgresql:5432"
+      SERVICE_PRECONDITION: "datanode:9864 hive-metastore-postgresql:5432"
     ports:
       - "9083:9083"
     depends_on:
@@ -166,7 +166,7 @@ services:
     env_file:
       - ./hadoop.env
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864 hive-metastore-postgresql:5432 hive-metastore:9083 hive-server:10000 resourcemanager:8088"
+      SERVICE_PRECONDITION: "datanode:9864 hive-metastore-postgresql:5432 hive-metastore:9083 hive-server:10000 resourcemanager:8088"
       POSTGRES_USER: hue
       POSTGRES_PASSWORD: hue
       POSTGRES_DB: hue
@@ -177,7 +177,7 @@ services:
     networks:
       - ivirse_hadoop_network
     environment:
-      SERVICE_PRECONDITION: "datanode3:9864 hive-metastore-postgresql:5432 hive-metastore:9083 hive-server:10000 resourcemanager:8088"
+      SERVICE_PRECONDITION: "datanode:9864 hive-metastore-postgresql:5432 hive-metastore:9083 hive-server:10000 resourcemanager:8088"
     ports:
       - "8888:8888"
     env_file:
