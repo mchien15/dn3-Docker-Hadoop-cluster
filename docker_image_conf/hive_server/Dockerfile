@@ -1,4 +1,5 @@
-FROM bde2020/hive:2.3.2-postgresql-metastore
+# FROM bde2020/hive:2.3.2-postgresql-metastore
+FROM chienlm15/hive:latest
 
 LABEL maintainer="mrugankray@gmail.com"
 LABEL description="container with hive-server & sqoop"

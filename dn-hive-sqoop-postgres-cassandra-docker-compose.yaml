@@ -35,10 +35,10 @@ services:
   #     - ./hadoop.env
 
   datanode:
-    image: mrugankray/datanode-python:1.0
-    # build:
-    #   context: ./docker_image_conf/datanode
-    #   dockerfile: Dockerfile
+    # image: mrugankray/datanode-python:1.0
+    build:
+      context: ./docker_image_conf/datanode
+      dockerfile: Dockerfile
     container_name: datanode
     # networks:
     #   - ivirse_hadoop_network
@@ -58,7 +58,10 @@ services:
       - ./hadoop.env
 
   resourcemanager:
-    image: mrugankray/resourcemanager-python:1.0
+    # image: mrugankray/resourcemanager-python:1.0
+    build:
+      context: ./docker_image_conf/resourcemanager
+      dockerfile: Dockerfile
     container_name: resourcemanager
     # networks:
     #   - ivirse_hadoop_network
@@ -75,7 +78,10 @@ services:
       - ./hadoop.env
 
   nodemanager:
-    image: mrugankray/nodemanager-python:1.0
+    # image: mrugankray/nodemanager-python:1.0
+    build:
+      context: ./docker_image_conf/nodemanager
+      dockerfile: Dockerfile
     container_name: nodemanager
     # networks:
     #   - ivirse_hadoop_network
@@ -93,7 +99,8 @@ services:
       - ./hadoop.env
 
   historyserver:
-    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    # image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    image: chienlm15/hadoop-historyserver:latest
     container_name: historyserver
     # networks:
     #   - ivirse_hadoop_network
@@ -110,7 +117,10 @@ services:
 
 # Setting up Hive #
   hive-server:
-    image: mrugankray/hive-server-sqoop:1.0
+    # image: mrugankray/hive-server-sqoop:1.0
+    build:
+      context: ./docker_image_conf/hive-server
+      dockerfile: Dockerfile
     container_name: hive-server
     # networks:
     #   - ivirse_hadoop_network
@@ -134,7 +144,8 @@ services:
       - 10000:10000
 
   hive-metastore:
-    image: bde2020/hive:2.3.2-postgresql-metastore
+    # image: bde2020/hive:2.3.2-postgresql-metastore
+    image: chienlm15/hive:latest
     container_name: hive-metastore
     # networks:
     #   - ivirse_hadoop_network

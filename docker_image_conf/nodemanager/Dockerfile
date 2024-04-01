@@ -1,4 +1,5 @@
-FROM bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
+# FROM bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
+FROM chienlm15/hadoop-nodemanager:latest
 
 LABEL maintainer="mrugankray@gmail.com"
 LABEL description="container acting as nodemanager & python installed"
