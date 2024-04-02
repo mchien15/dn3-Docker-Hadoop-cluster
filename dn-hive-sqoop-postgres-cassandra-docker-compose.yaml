@@ -35,10 +35,10 @@ services:
   #     - ./hadoop.env
 
   datanode:
-    # image: mrugankray/datanode-python:1.0
-    build:
-      context: ./docker_image_conf/datanode
-      dockerfile: Dockerfile
+    image: chienlm15/datanode-python:latest
+    # build:
+    #   context: ./docker_image_conf/datanode
+    #   dockerfile: Dockerfile
     container_name: datanode
     # networks:
     #   - ivirse_hadoop_network
@@ -58,10 +58,10 @@ services:
       - ./hadoop.env
 
   resourcemanager:
-    # image: mrugankray/resourcemanager-python:1.0
-    build:
-      context: ./docker_image_conf/resourcemanager
-      dockerfile: Dockerfile
+    image: chienlm15/resourcemanager-python:latest
+    # build:
+    #   context: ./docker_image_conf/resourcemanager
+    #   dockerfile: Dockerfile
     container_name: resourcemanager
     # networks:
     #   - ivirse_hadoop_network
@@ -78,10 +78,10 @@ services:
       - ./hadoop.env
 
   nodemanager:
-    # image: mrugankray/nodemanager-python:1.0
-    build:
-      context: ./docker_image_conf/nodemanager
-      dockerfile: Dockerfile
+    image: chienlm15/nodemanager-python:latest
+    # build:
+    #   context: ./docker_image_conf/nodemanager
+    #   dockerfile: Dockerfile
     container_name: nodemanager
     # networks:
     #   - ivirse_hadoop_network
@@ -117,10 +117,10 @@ services:
 
 # Setting up Hive #
   hive-server:
-    # image: mrugankray/hive-server-sqoop:1.0
-    build:
-      context: ./docker_image_conf/hive_server
-      dockerfile: Dockerfile
+    image: chienlm15/hive-server-sqoop:latest
+    # build:
+    #   context: ./docker_image_conf/hive_server
+    #   dockerfile: Dockerfile
     container_name: hive-server
     # networks:
     #   - ivirse_hadoop_network
